@@ -15,10 +15,51 @@
 <!-- Vertical Layout -->
 <div class="row">
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        @if ($dservices->count() > 0)
         <div class="card card-stats">
             @include('errors.custom-message')
             <div class="">
                 <h3>Service</h3>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dt-mant-table">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Kode Jasa</th>
+                                <th>Nama Jasa</th>
+                                <th>Tanggal Pengambilan</th>
+                                <th>Total Harga</th>
+                                <th>Status</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($dservices as $i => $row)
+                            <tr>
+                                <td>{{ $i+1 }}</td>
+                                <td>{{ $row->kode_jasa }}</td>
+                                <td>{{ $row->nama }}</td>
+                                <td> {{$row->tanggal_take}} </td>
+                                <td>Rp. {{$row->harga * $row->jumlah}} </td>
+                                <td> {{$status[$row->status]}} </td>
+                                <td>
+                                    <div style="display:flex;">
+                                        <a href="{{route('service.edit',$row->kode_jasa)}}" class="btn btn-warning btn-sm ml-1">Detail</a>
+                                    </div>
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        @endif
+        <div class="card card-stats">
+            <div class="">
+                <h3>List Service</h3>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -43,7 +84,7 @@
                                 <td> {{$row->harga}} </td>
                                 <td>
                                     <div style="display:flex;">
-                                        <a href="{{route('service.edit',$row->kode_jasa)}}" class="btn btn-warning btn-sm ml-1">Detail</a>
+                                        <a href="{{route('service.edit',$row->kode_jasa)}}" class="btn btn-success btn-sm ml-1">Ambil</a>
                                     </div>
                                 </td>
                             </tr>

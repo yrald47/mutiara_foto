@@ -8,8 +8,6 @@
 
 @endsection
 
-
-
 @section('index')
 <div class="content">
 <!-- Vertical Layout -->
@@ -33,18 +31,31 @@
                             {{ csrf_field() }}
                             <div class="form-group">
                                 <div class="form-line">
-                                    <label class="form-label">Waktu Booking</label>
                                     <input type="text" name="kode_jasa" value="{{$service->kode_jasa}}" hidden readonly>
-                                    <div class="input-group">
-                                        <input type="date" class="form-control @error('date') is-invalid @enderror" name="date" value="{{old('date')}}" required>
-                                        <input type="time" class="form-control @error('time') is-invalid @enderror" name="time" value="{{old('time')}}" required>
-                                      </div>
-                                    @error('date')
-                                        <label id="name-error" class="error" for="date">{{ $message }}</label>
-                                    @enderror
-                                    @error('time')
-                                        <label id="name-error" class="error" for="time">{{ $message }}</label>
-                                    @enderror
+                                    <div class="form-line">
+                                        <label class="form-label">Jumlah Foto</label>
+                                        <input type="number" class="form-control @error('jumlah') is-invalid @enderror" name="jumlah" value="{{$dservice->jumlah}}" placeholder="Jumlah Foto" required>
+                                        @error('jumlah')
+                                            <label id="name-error" class="error" for="jumlah">{{ $message }}</label>
+                                        @enderror
+                                    </div>
+                                    <div class="form-line">
+                                        <label class="form-label">Tanggal Pengambilan Barang</label>
+                                        <input type="date" class="form-control @error('tanggal_take') is-invalid @enderror" name="tanggal_take" value="{{$dservice->tanggal_take}}" required>
+                                        @error('tanggal_take')
+                                            <label id="name-error" class="error" for="tanggal_take">{{ $message }}</label>
+                                        @enderror
+                                    </div>
+                                    @if ($dservice->file)
+                                        <span>{{$dservice->file}}</span>
+                                    @endif
+                                    <div class="form-line">
+                                        <label class="form-label">Foto ( .rar kalau lebih dari satu )</label>
+                                        <input type="file" class="form-control @error('file') is-invalid @enderror" name="file" value="{{old('file')}}">
+                                        @error('file')
+                                            <label id="name-error" class="error" for="file">{{ $message }}</label>
+                                        @enderror
+                                    </div>
                                 </div>
                             </div>
                             <div class="text-center">

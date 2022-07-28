@@ -19,7 +19,7 @@ class CreateDetailJasasTable extends Migration
             $table->integer('jumlah');
             $table->date('tanggal_take');
             $table->integer('status')->default(0);
-            $table->string('file');
+            $table->string('file')->nullable();
             $table->timestamps();
 
             $table->primary(['kode_jasa','id_member','tanggal_take']);

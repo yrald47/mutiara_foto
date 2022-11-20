@@ -22,7 +22,7 @@
             </div>
             <div class="card-body">
                 <div class="row gx-4 gx-lg-5 align-items-center my-5">
-                    <div class="col-lg-7"><img class="img-fluid rounded mb-4 mb-lg-0" src="{{url('storage/'.$package->foto)}}" alt="..." /></div>
+                    <div class="col-lg-7"><img class="img-fluid rounded mb-4 mb-lg-0" src="{{asset('storage/'.$package->foto)}}" alt="..." /></div>
                     <div class="col-lg-5">
                         <div class="text-center">
                           <h3 class="mt-0">{{$package->nama}}</h3>
@@ -36,7 +36,7 @@
                                     <label class="form-label">Waktu Booking</label>
                                     <input type="text" name="kode_paket" value="{{$package->kode_paket}}" hidden readonly>
                                     <div class="input-group">
-                                        <input type="date" class="form-control @error('date') is-invalid @enderror" name="date" value="{{old('date')}}" required>
+                                        <input type="date" class="form-control @error('date') is-invalid @enderror" name="date" value="{{old('date')}}" required min="{{date('Y-m-d')}}">
                                         <input type="time" class="form-control @error('time') is-invalid @enderror" name="time" value="{{old('time')}}" required>
                                       </div>
                                     @error('date')

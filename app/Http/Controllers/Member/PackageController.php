@@ -28,6 +28,7 @@ class PackageController extends Controller
 
     public function store(Request $request)
     {
+        dd($request->time);
         $this->validate($request,[
             'date' => 'required',
             'time' => 'required',

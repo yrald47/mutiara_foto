@@ -44,13 +44,12 @@
                                 <td> {{$row->status}} </td>
                                 <td>
                                     <div style="display:flex;">
-                                        <!-- <a href="{{route('packages.show',$row->kode_paket)}}" class="btn btn-success btn-sm">Detail</a> -->
-                                        <!-- <a href="{{route('packages.edit',$row->kode_paket)}}" class="btn btn-warning btn-sm ml-1">Edit</a> -->
+                                        <a href="{{route('packages.show',$row->kode_paket)}}" class="btn btn-success btn-sm">Ambil</a>
                                             &nbsp;
-                                        <!-- <form id="delete_form{{$row->id}}" method="POST" action="{{ route('packages.destroy',$row->kode_paket) }}"  onclick="return confirm('Are you sure?')"> -->
+                                        <form id="delete_form{{$row->id}}" method="POST" action="{{ route('packages.destroy',$row->kode_paket) }}"  onclick="return confirm('Are you sure?')">
                                             {{ csrf_field() }}
                                             <input name="_method" type="hidden" value="DELETE">
-                                            <button class="btn btn-danger btn-sm" type="submit">Hapus</button>
+                                            <button class="btn btn-danger btn-sm" type="submit">Tolak</button>
                                         </form>
                                     </div>
                                 </td>

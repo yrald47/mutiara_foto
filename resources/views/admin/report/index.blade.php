@@ -34,18 +34,17 @@
                 </div>
                 <form id="form_validation" method="POST" action="{{ route('services.store') }}">
                     <!-- {{ csrf_field() }} -->
-                    <div class="form-group">
-                        <div class="form-line">
+                    <div class="form-row align-items-center">
+                        <div class="col-auto">
                             <label class="form-label">Waktu Booking</label>
-                            <div class="input-group">
-                                <input type="date" class="form-control @error('date') is-invalid @enderror" name="date" value="{{old('date')}}" required min="{{date('Y-m-d')}}">
-                                <button class="btn btn-primary waves-effect float-right" type="submit">SUBMIT</button>
-                                </div>
+                            <input type="date" class="form-control @error('date') is-invalid @enderror" name="date" value="{{old('date')}}" required>
                             @error('date')
-                                <label id="name-error" class="error" for="date">{{ $message }}</label>
+                            <label id="name-error" class="error" for="date">{{ $message }}</label>
                             @enderror
-                            
-                        </div>                        
+                        </div>
+                        <div class="col-auto">
+                            <button class="btn btn-primary waves-effect float-right" type="submit">SUBMIT</button>
+                        </div>
                     </div>
                 </form>
                 <div class="table-responsive">

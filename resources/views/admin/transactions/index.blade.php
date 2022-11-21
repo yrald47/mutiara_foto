@@ -38,8 +38,8 @@
                             <tr>
                                 <td>{{ $i+1 }}</td>
                                 <td>{{ $row->kode_booking }}</td>
-                                <td>{{ $row->kode_paket }}</td>
-                                <td> {{$row->id_member}} </td>
+                                <td>{{ $row->nama }}</td>
+                                <td> {{$row->username}} </td>
                                 <td> {{$row->tanggal_take}} {{$row->jam_take}} </td>
                                 <td> {{$row->status}} </td>
                                 <td>

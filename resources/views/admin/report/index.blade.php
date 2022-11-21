@@ -33,17 +33,20 @@
                     <label class="form-check-label" for="tahunan">Tahunan</label>
                 </div>
                 <form id="form_validation" method="POST" action="{{ route('services.store') }}">
-                    {{ csrf_field() }}
+                    <!-- {{ csrf_field() }} -->
                     <div class="form-group">
                         <div class="form-line">
-                            <label class="form-label">Kode Jasa</label>
-                            <input type="text" class="form-control @error('kode_jasa') is-invalid @enderror" name="kode_jasa" value="{{old('kode_jasa')}}" required>
-                            @error('kode_jasa')
-                                <label id="name-error" class="error" for="kode_jasa">{{ $message }}</label>
+                            <label class="form-label">Waktu Booking</label>
+                            <div class="input-group">
+                                <input type="date" class="form-control @error('date') is-invalid @enderror" name="date" value="{{old('date')}}" required min="{{date('Y-m-d')}}">
+                                <button class="btn btn-primary waves-effect float-right" type="submit">SUBMIT</button>
+                                </div>
+                            @error('date')
+                                <label id="name-error" class="error" for="date">{{ $message }}</label>
                             @enderror
+                            
                         </div>                        
                     </div>
-                    <button class="btn btn-primary waves-effect" type="submit">SUBMIT</button>
                 </form>
                 <div class="table-responsive">
                     <table class="table table-bordered" id="dt-mant-table">
@@ -59,7 +62,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($booking as $i => $row)
+                            <!-- @foreach($booking as $i => $row)
                             <tr>
                                 <td>{{ $i+1 }}</td>
                                 <td>{{ $row->kode_booking }}</td>
@@ -79,7 +82,7 @@
                                     </div>
                                 </td>
                             </tr>
-                            @endforeach
+                            @endforeach -->
                         </tbody>
                     </table>
                 </div>

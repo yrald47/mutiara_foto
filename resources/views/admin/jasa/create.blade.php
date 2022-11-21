@@ -13,7 +13,7 @@
         <div class="col-md-12">
             <div class="card card-user">
               <div class="card-header">
-                <h5 class="card-title">Tambah Penanggung Jawab</h5>
+                <h5 class="card-title">Tambah Service</h5>
               </div>
               <div class="card-body">
                     <form id="form_validation" method="POST" action="{{ route('services.store') }}">

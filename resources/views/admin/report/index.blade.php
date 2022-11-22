@@ -103,20 +103,21 @@
 
 $(document).ready(function() {
     var today = new Date();
-    var today_format = today.getFullYear() + "-" + (today.getMonth()+1) + "-" + today.getDate();
-    console.log("today: "+ today_format);
+    var today_format = today.getFullYear() + "-" + (today.getMonth()+1);
+    var today_full_format = today.getFullYear() + "-" + (today.getMonth()+1) + "-" + today.getDate();
+    console.log("today: "+ today_full_format);
     $('input:radio[name=rangeReport]').change(function() {
         if (this.value == 'harian') {
             console.log("Harian selected");
-            $('#report').attr({'type': 'date', 'min': today_format});
+            $('#report').attr({'type': 'date', 'max': today_full_format});
         }
         else if (this.value == 'bulanan') {
             console.log("Bulanan selected");
-            $('#report').attr('type', 'month');
+            $('#report').attr({'type': 'month', 'max': today_format});
         }
         else if (this.value == 'tahunan') {
             console.log("Tahunan selected");
-            $('#report').attr('type', 'number');
+            $('#report').attr({'type': 'number', 'max': today.getFullYear()});
         }
     });
 });

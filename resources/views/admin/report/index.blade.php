@@ -103,7 +103,7 @@
 
 $(document).ready(function() {
     var today = new Date();
-    var today_format = today.getFullYear() + "-" + today.getMonth() + "-" + today.getDate();
+    var today_format = today.getFullYear() + "-" + (today.getMonth()+1) + "-" + today.getDate();
     console.log("today: "+ today_format);
     $('input:radio[name=rangeReport]').change(function() {
         if (this.value == 'harian') {

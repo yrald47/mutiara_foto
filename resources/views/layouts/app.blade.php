@@ -55,7 +55,7 @@
   <script src="{{asset('dashboard/assets/datatable/dataTables.responsive.min.js')}}"></script>
 
   <!-- Paper Dashboard DEMO methods, don't include it in your project! -->
-  <script src="{{asset('dashboard/assets/demo/demo.js')}}"></script>  
+  <script src="{{asset('dashboard/assets/demo/demo.js')}}"></script>
   <!-- Scripts -->
   <script src="{{ asset('js/main.js') }}" defer></script>
 

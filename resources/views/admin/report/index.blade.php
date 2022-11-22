@@ -20,25 +20,29 @@
                 <!-- <a href="{{route('packages.create')}}" class="btn btn-success btn-sm disabled">Add Transaction</a> -->
             </div>
             <div class="card-body">
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="rangeReport" id="harian" value="option1">
-                    <label class="form-check-label" for="harian">Harian</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="rangeReport" id="bulanan" value="option2">
-                    <label class="form-check-label" for="bulanan">Bulanan</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="rangeReport" id="tahunan" value="option3">
-                    <label class="form-check-label" for="tahunan">Tahunan</label>
+                <div class="form-group" id="response">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="rangeReport" id="harian" value="harian">
+                        <label class="form-check-label" for="harian">Harian</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="rangeReport" id="bulanan" value="bulanan" checked>
+                        <label class="form-check-label" for="bulanan">Bulanan</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="rangeReport" id="tahunan" value="tahunan">
+                        <label class="form-check-label" for="tahunan">Tahunan</label>
+                    </div>
                 </div>
                 <form id="form_validation" method="POST" action="{{ route('services.store') }}">
                     <!-- {{ csrf_field() }} -->
                     <div class="form-row align-items-center">
                         <div class="col-auto">
                             <label class="form-label">Waktu Booking</label>
-                            <input type="date" class="form-control @error('date') is-invalid @enderror" name="date" value="{{old('date')}}" required>
-                            @error('date')
+                            <input id="report" type="month" class="form-control @error('month') is-invalid @enderror" name="report">
+                            <!-- <input id="bulan" type="month" class="form-control @error('month') is-invalid @enderror" name="bulan" value="{{old('month')}}"> -->
+                            <!-- <input id="tahun" type="number" class="form-control @error('number') is-invalid @enderror" name="tahun" value="{{old('number')}}" hidden> -->
+                            @error('month')
                             <label id="name-error" class="error" for="date">{{ $message }}</label>
                             @enderror
                         </div>
@@ -95,5 +99,26 @@
 @endsection
 
 @section('extra-script')
+<script>
 
+$(document).ready(function() {
+    var today = new Date();
+    var today_format = today.getFullYear() + "-" + today.getMonth() + "-" + today.getDate();
+    console.log("today: "+ today_format);
+    $('input:radio[name=rangeReport]').change(function() {
+        if (this.value == 'harian') {
+            console.log("Harian selected");
+            $('#report').attr({'type': 'date', 'min': today_format});
+        }
+        else if (this.value == 'bulanan') {
+            console.log("Bulanan selected");
+            $('#report').attr('type', 'month');
+        }
+        else if (this.value == 'tahunan') {
+            console.log("Tahunan selected");
+            $('#report').attr('type', 'number');
+        }
+    });
+});
+</script>
 @endsection

@@ -34,7 +34,7 @@
                         <label class="form-check-label" for="tahunan">Tahunan</label>
                     </div>
                 </div>
-                <form id="form_validation"> <!--method="POST" action="{{ route('services.store') }}"-->
+                <form id="form_validation"> <!-- action="javascript(0)"> method="POST" action="{{ route('services.store') }}" -->
                     {{ csrf_field() }}
                     <div class="form-row align-items-center">
                         <div class="col-auto">
@@ -46,6 +46,7 @@
                         </div>
                         <div class="col-auto">
                             <input id="submit_button" type="button" class="btn btn-primary waves-effect float-right" value="SUBMIT">
+                            <!-- <button id="submit_button" type="submit" class="btn btn-primary waves-effect float-right">SUBMIT</button> -->
                         </div>
                     </div>
                 </form>
@@ -59,10 +60,9 @@
                                 <th>Customer</th>
                                 <th>Tanggal dan Waktu Booking</th>
                                 <th>Status</th>
-                                <th>Aksi</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="report_body">
                             <!-- @foreach($booking as $i => $row)
                             <tr>
                                 <td> {{ $i+1 }} </td>
@@ -132,8 +132,19 @@ $(document).ready(function() {
                 '_token': '{{csrf_token()}}'
             },
             success:function(data) {
-                // $("#msg").html(data.msg);
                 console.log(data['data'])
+                $("#report_body").html("");
+                $.each(data, function() {
+                    $.each(this, function(k, v) {
+                        var row = $("<tr><td>" + (k+1) 
+                                    + "</td><td>" + v.kode_booking 
+                                    + "</td><td>" + v.nama 
+                                    + "</td><td>" + v.username 
+                                    + "</td><td>"+ v.tanggal_take 
+                                    + "</td><td>" + v.status + "</td></tr>");
+                        $("#report_body").append(row);
+                    });
+                });
             }
         });
     });

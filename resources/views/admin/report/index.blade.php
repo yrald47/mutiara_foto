@@ -34,20 +34,19 @@
                         <label class="form-check-label" for="tahunan">Tahunan</label>
                     </div>
                 </div>
-                <form id="form_validation" method="POST" action="{{ route('services.store') }}">
-                    <!-- {{ csrf_field() }} -->
+                <form id="form_validation"> <!--method="POST" action="{{ route('services.store') }}"-->
+                    {{ csrf_field() }}
                     <div class="form-row align-items-center">
                         <div class="col-auto">
                             <label class="form-label">Waktu Booking</label>
                             <input id="report" type="month" class="form-control @error('month') is-invalid @enderror" name="report">
-                            <!-- <input id="bulan" type="month" class="form-control @error('month') is-invalid @enderror" name="bulan" value="{{old('month')}}"> -->
-                            <!-- <input id="tahun" type="number" class="form-control @error('number') is-invalid @enderror" name="tahun" value="{{old('number')}}" hidden> -->
                             @error('month')
-                            <label id="name-error" class="error" for="date">{{ $message }}</label>
+                            <label id="name-error" class="error" for="date">Tes {{ $message }}</label>
                             @enderror
                         </div>
                         <div class="col-auto">
-                            <button class="btn btn-primary waves-effect float-right" type="submit">SUBMIT</button>
+                            <input id="submit_button" type="button" class="btn btn-primary waves-effect float-right" value="SUBMIT">
+                            <!-- <button id="submit_button" class="btn btn-primary waves-effect float-right" type="submit">SUBMIT</button> -->
                         </div>
                     </div>
                 </form>
@@ -67,9 +66,9 @@
                         <tbody>
                             <!-- @foreach($booking as $i => $row)
                             <tr>
-                                <td>{{ $i+1 }}</td>
-                                <td>{{ $row->kode_booking }}</td>
-                                <td>{{ $row->nama }}</td>
+                                <td> {{ $i+1 }} </td>
+                                <td> {{ $row->kode_booking }} </td>
+                                <td> {{ $row->nama }} </td>
                                 <td> {{$row->username}} </td>
                                 <td> {{$row->tanggal_take}} {{$row->jam_take}} </td>
                                 <td> {{$row->status}} </td>
@@ -119,6 +118,25 @@ $(document).ready(function() {
             console.log("Tahunan selected");
             $('#report').attr({'type': 'number', 'max': today.getFullYear()});
         }
+    });
+
+    $("#submit_button").click(function(){
+        var range = $("#report").val();
+        var range_report = $('input:radio[name=rangeReport]').val();
+        console.log("range: " + range);
+        $.ajax({
+            type:'POST',
+            url:'/reportresult',
+            data:{
+                'range':  range, 
+                'tipe': range_report, 
+                '_token': '{{csrf_token()}}'
+            },
+            success:function(data) {
+                // $("#msg").html(data.msg);
+                console.log(data['data'])
+            }
+        });
     });
 });
 </script>

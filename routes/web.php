@@ -44,6 +44,7 @@ Route::group(['middleware' => ['role:admin']], function () {
     Route::resource('services', 'Admin\JasaController');
     Route::resource('transaction', 'Admin\TransactionController');
     Route::resource('report', 'Admin\ReportController');
+    Route::post('/reportresult', 'Admin\ReportController@getReport');
 });
 
 Route::group(['middleware' => ['role:member']], function () {

@@ -23,7 +23,6 @@ class PackageController extends Controller
 
     public function store(Request $request)
     {
-        // dd($request->all());
         $this->validate($request, [
             'kode_paket' => 'required|max:2|unique:packages',
             'nama' => 'required',

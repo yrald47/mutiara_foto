@@ -39,14 +39,13 @@
                     <div class="form-row align-items-center">
                         <div class="col-auto">
                             <label class="form-label">Waktu Booking</label>
-                            <input id="report" type="month" class="form-control @error('month') is-invalid @enderror" name="report">
+                            <input id="report" type="month" class="form-control @error('month') is-invalid @enderror" name="report" max="<?php echo date('Y-n', time()) ?>">
                             @error('month')
                             <label id="name-error" class="error" for="date">Tes {{ $message }}</label>
                             @enderror
                         </div>
                         <div class="col-auto">
                             <input id="submit_button" type="button" class="btn btn-primary waves-effect float-right" value="SUBMIT">
-                            <!-- <button id="submit_button" class="btn btn-primary waves-effect float-right" type="submit">SUBMIT</button> -->
                         </div>
                     </div>
                 </form>

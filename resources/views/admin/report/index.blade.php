@@ -101,6 +101,7 @@ $(document).ready(function() {
 
     $("#submit_button").click(function(){
         var range = $("#report").val();
+        // console.log(print_r(range));
         var range_report = $('input:radio[name=rangeReport]:checked').val();
         console.log("range: " + range + " radio: " + range_report);
         $.ajax({

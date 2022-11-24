@@ -25,19 +25,17 @@ class ReportController extends Controller
                             ->where('bookings.tanggal_take', '=', $request->range)
                             ->get(['bookings.*', 'packages.*', 'users.*']);
         } elseif ($request->tipe == "bulanan") {
+            $pieces = explode("-", $request->range);
             $data = Booking::join('users', 'users.id', '=', 'bookings.id_member')
                             ->join('packages', 'packages.kode_paket', '=', 'bookings.kode_paket')
-                            ->whereRaw('YEAR(bookings.tanggal_take) == $request->range AND MONTH(bookings.tanggal_take) == $request->take')
+                            ->whereYear('bookings.tanggal_take', $pieces[0])
+                            ->whereMonth('bookings.tanggal_take', $pieces[1])
                             ->get(['bookings.*', 'packages.*', 'users.*']);
         } elseif ($request->tipe == "tahunan") {
             $data = Booking::join('users', 'users.id', '=', 'bookings.id_member')
                             ->join('packages', 'packages.kode_paket', '=', 'bookings.kode_paket')
                             ->whereYear('bookings.tanggal_take', $request->range)
                             ->get(['bookings.*', 'packages.*', 'users.*']);
-            // $data = DB::table('bookings')->whereRaw('bookings.tanggal_take = $request->range')->get();
-            // $data = DB::table('bookings')->whereYear('bookings.tanggal_take', '=', '2022')->get();
-            // $data = Booking::all();
-            // $data = $request->tipe;
         }
         
         // dd($request->range);

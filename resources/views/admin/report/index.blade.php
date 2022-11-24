@@ -103,7 +103,7 @@ $(document).ready(function() {
         var range = $("#report").val();
         // console.log(print_r(range));
         var range_report = $('input:radio[name=rangeReport]:checked').val();
-        console.log("range: " + range + " radio: " + range_report);
+        // console.log("range: " + range + " radio: " + range_report);
         $.ajax({
             type:'POST',
             url:'/reportresult',
@@ -113,7 +113,7 @@ $(document).ready(function() {
                 '_token': '{{csrf_token()}}'
             },
             success:function(data) {
-                console.log(data['data'])
+                // console.log(data['data'])
                 $("#report_body").html("");
                 $.each(data, function() {
                     $.each(this, function(k, v) {

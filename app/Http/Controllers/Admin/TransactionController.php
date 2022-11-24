@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
-use App\Model\Booking;
 use Illuminate\Support\Facades\DB;
+
+use App\Model\Booking;
 
 use Illuminate\Http\Request;
 

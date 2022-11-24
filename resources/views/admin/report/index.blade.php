@@ -63,27 +63,7 @@
                             </tr>
                         </thead>
                         <tbody id="report_body">
-                            <!-- @foreach($booking as $i => $row)
-                            <tr>
-                                <td> {{ $i+1 }} </td>
-                                <td> {{ $row->kode_booking }} </td>
-                                <td> {{ $row->nama }} </td>
-                                <td> {{$row->username}} </td>
-                                <td> {{$row->tanggal_take}} {{$row->jam_take}} </td>
-                                <td> {{$row->status}} </td>
-                                <td>
-                                    <div style="display:flex;">
-                                        <a href="{{route('packages.show',$row->kode_paket)}}" class="btn btn-success btn-sm">Ambil</a>
-                                            &nbsp;
-                                        <form id="delete_form{{$row->id}}" method="POST" action="{{ route('packages.destroy',$row->kode_paket) }}"  onclick="return confirm('Are you sure?')">
-                                            {{ csrf_field() }}
-                                            <input name="_method" type="hidden" value="DELETE">
-                                            <button class="btn btn-danger btn-sm" type="submit">Tolak</button>
-                                        </form>
-                                    </div>
-                                </td>
-                            </tr>
-                            @endforeach -->
+                            <!-- biar jquery yang atur -->
                         </tbody>
                     </table>
                 </div>
@@ -121,8 +101,8 @@ $(document).ready(function() {
 
     $("#submit_button").click(function(){
         var range = $("#report").val();
-        var range_report = $('input:radio[name=rangeReport]').val();
-        console.log("range: " + range);
+        var range_report = $('input:radio[name=rangeReport]:checked').val();
+        console.log("range: " + range + " radio: " + range_report);
         $.ajax({
             type:'POST',
             url:'/reportresult',

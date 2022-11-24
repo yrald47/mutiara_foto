@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 use Response;
 use App\Model\Booking;
 
@@ -31,8 +32,12 @@ class ReportController extends Controller
         } elseif ($request->tipe == "tahunan") {
             $data = Booking::join('users', 'users.id', '=', 'bookings.id_member')
                             ->join('packages', 'packages.kode_paket', '=', 'bookings.kode_paket')
-                            ->whereRaw('EXTRACT(YEAR from (bookings.tanggal_take) = $request->range')
+                            ->whereYear('bookings.tanggal_take', $request->range)
                             ->get(['bookings.*', 'packages.*', 'users.*']);
+            // $data = DB::table('bookings')->whereRaw('bookings.tanggal_take = $request->range')->get();
+            // $data = DB::table('bookings')->whereYear('bookings.tanggal_take', '=', '2022')->get();
+            // $data = Booking::all();
+            // $data = $request->tipe;
         }
         
         // dd($request->range);
